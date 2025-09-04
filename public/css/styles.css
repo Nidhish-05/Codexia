@@ -2,3 +2,117 @@
     width: 70px;
     border-radius: 35px;
 }
+
+#navbar {
+    background-color: rgba(6, 6, 32, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+}
+#navbar a{
+    color: white;
+}
+
+#home {
+    background: linear-gradient(135deg, #FF3E96 0%, #4B0082 100%);
+    color: #E0FFFF;
+    
+}
+
+#hero-title{
+    font-weight: 750;
+    color: #e0ffff;
+}
+
+#home {
+    color: #E0FFFF;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+}
+#form-text{
+    color: aliceblue;
+}
+
+#url {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #E0FFFF;
+    border-radius: 0.5rem;
+}
+#url::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+#qr-code-section{
+    background-color: white;
+    
+}
+#card-generated-title{
+    background: linear-gradient( #ff3e96 0%, #7402ff 100%);
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+#card-generated-text{
+    color: #026be1;
+}
+.btn-primary {
+    background: linear-gradient(45deg, #FF3E96, #8A2BE2);
+    border: none;
+    color: #E0FFFF;
+    transition: all 1s ease;
+}
+.btn-primary:hover {
+    background: linear-gradient(45deg, #8A2BE2, #FF3E96);
+    transform: translateY(-2px);
+}
+#qr-code-section{
+    color:rgb(14, 5, 30);   
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+}
+#features-title{
+    font-size: 100px;
+}
+#custom-cards{
+    background: linear-gradient( #ff3e96 0%, #440295 100%);
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+#splash-card-1{
+    background-image: url("/assets/1.png");
+}
+#splash-card-2{
+    background-image: url("/assets/2.png");
+}
+#splash-card-3{
+    background-image: url("/assets/3.png");
+}
+.cards{
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.cards:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+#about-us-title{
+    background: linear-gradient( #ff3e96 0%, #440295 100%);
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+}
+#about-us-subtitle{
+    color: #026be1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: 300;
+}
+#custom-footer{
+    background-color: black;
+    color: rgb(72, 166, 249);
+}
+#custom-footer p{
+    color: rgb(72, 166, 249);
+}
