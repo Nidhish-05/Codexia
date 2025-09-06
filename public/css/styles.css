@@ -1,118 +1,352 @@
-.logo{
-    width: 70px;
-    border-radius: 35px;
+/* ============================================
+   Codexia Theme — Vibrant + Clean Animations
+   Tech: Bootstrap 5 + EJS
+   ------------------------------------------------
+   Color System (CSS Variables)
+   ============================================ */
+:root{
+  --bg: #F9FAFB;
+  --text: #1F2937;
+  --muted: #6B7280;
+
+  --primary: #6C63FF;     /* vibrant purple */
+  --secondary: #FF6584;   /* energetic pink */
+  --accent: #4ADEDE;      /* aqua cyan */
+  --accent-2: #22D3EE;    /* brighter cyan */
+
+  --card-bg: #ffffff;
+  --glass-bg: rgba(255,255,255,0.08);
+  --glass-brd: rgba(255,255,255,0.20);
+
+  --shadow-soft: 0 6px 24px rgba(17, 24, 39, 0.10);
+  --shadow-med: 0 10px 30px rgba(17, 24, 39, 0.15);
+  --shadow-strong: 0 18px 50px rgba(17, 24, 39, 0.25);
+
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
 }
 
-#navbar {
-    background-color: rgba(6, 6, 32, 0.8);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border-bottom-left-radius: 10%;
-    border-bottom-right-radius: 10%;
+/* ============================================
+   Base
+   ============================================ */
+html { scroll-padding-top: 64px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  padding-top: 70px; /* account for fixed navbar */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-#navbar a{
-    color: white;
+img { max-width: 100%; height: auto; border: 0; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
 }
 
-#home {
-    background: linear-gradient(135deg, #FF3E96 0%, #4B0082 100%);
-    color: #E0FFFF;
-    
+/* ============================================
+   Navbar (partials/navbar.ejs uses .pastel-navbar)
+   ============================================ */
+.pastel-navbar{
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(17,24,39,0.06);
+  box-shadow: var(--shadow-soft);
 }
 
-#hero-title{
-    font-weight: 750;
-    color: #e0ffff;
+.pastel-navbar .navbar-brand span{
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.2px;
 }
 
-#home {
-    color: #E0FFFF;
-    border-bottom-left-radius: 10%;
-    border-bottom-right-radius: 10%;
+.pastel-navbar .nav-link{
+  position: relative;
+  color: var(--text);
+  font-weight: 500;
+  opacity: 0.9;
+  transition: opacity .25s ease, transform .25s ease;
 }
-#form-text{
-    color: aliceblue;
+.pastel-navbar .nav-link:hover{
+  opacity: 1;
+  transform: translateY(-1px);
+}
+.pastel-navbar .nav-link::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:-6px; height:2px;
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease;
+}
+.pastel-navbar .nav-link:hover::after{ transform: scaleX(1); }
+
+/* Toggler icon (visible on glassy bg) */
+.pastel-navbar .navbar-toggler{
+  border: 0;
+  box-shadow: none !important;
+}
+.pastel-navbar .navbar-toggler-icon{
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(31,41,55,0.85)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-#url {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #E0FFFF;
-    border-radius: 0.5rem;
+/* Call-to-action button used in navbar/login/etc. */
+.pastel-btn{
+  --grad: linear-gradient(90deg, var(--primary), var(--secondary));
+  background: var(--grad);
+  color: #fff !important;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(108,99,255,0.28);
+  transition: transform .25s ease, box-shadow .25s ease, background-position .5s ease;
+  background-size: 200% 100%;
+  background-position: 0% 50%;
 }
-#url::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+.pastel-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(108,99,255,0.35);
+  background-position: 100% 50%;
 }
-#qr-code-section{
-    background-color: white;
-    
+.pastel-btn:active{ transform: translateY(0); }
+
+/* Subtle shimmer on hover */
+.pastel-btn::before{
+  content:"";
+  position:absolute; inset:0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform .6s ease;
+  pointer-events: none;
 }
-#card-generated-title{
-    background: linear-gradient( #ff3e96 0%, #7402ff 100%);
-    background-clip: text;
-    color: transparent;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.pastel-btn:hover::before{ transform: translateX(100%); }
+
+/* Links (footer, auth) */
+.pastel-link{
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color .2s ease, text-shadow .2s ease;
 }
-#card-generated-text{
-    color: #026be1;
+.pastel-link:hover{
+  color: var(--primary);
+  text-shadow: 0 0 0 rgba(0,0,0,0); /* trigger repaint for crisper feel */
 }
-.btn-primary {
-    background: linear-gradient(45deg, #FF3E96, #8A2BE2);
-    border: none;
-    color: #E0FFFF;
-    transition: all 1s ease;
+
+/* ============================================
+   Hero (index.ejs uses .hero-card)
+   ============================================ */
+.hero-card{
+  max-width: 980px;
+  border-radius: var(--radius-xl);
+  padding: clamp(1.25rem, 2vw, 2rem);
+  background:
+    radial-gradient(1200px 600px at 10% -20%, rgba(108,99,255,0.14), transparent 60%),
+    radial-gradient(800px 500px at 90% 0%, rgba(255,101,132,0.12), transparent 55%),
+    var(--card-bg);
+  box-shadow: var(--shadow-med);
+  border: 1px solid rgba(17,24,39,0.06);
+  animation: cardFloat .9s ease-out both;
 }
-.btn-primary:hover {
-    background: linear-gradient(45deg, #8A2BE2, #FF3E96);
-    transform: translateY(-2px);
+
+.pastel-title{
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color: transparent;
 }
-#qr-code-section{
-    color:rgb(14, 5, 30);   
-    border-bottom-left-radius: 10%;
-    border-bottom-right-radius: 10%;
+.pastel-text{ color: var(--muted); }
+
+/* Floating on load */
+@keyframes cardFloat{
+  from{ opacity:0; transform: translateY(16px) scale(.98); }
+  to{ opacity:1; transform: translateY(0) scale(1); }
 }
-#features-title{
-    font-size: 100px;
+
+/* ============================================
+   Feature Cards (index.ejs: .feature-card + .pastel-card-*)
+   ============================================ */
+.feature-card{
+  border: 1px solid rgba(17,24,39,0.06);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform .25s ease, box-shadow .25s ease;
+  position: relative;
+  background: var(--card-bg);
+  isolation: isolate;
 }
-#custom-cards{
-    background: linear-gradient( #ff3e96 0%, #440295 100%);
-    background-clip: text;
-    color: transparent;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.feature-card::after{
+  /* soft glow on hover */
+  content:"";
+  position:absolute; inset:-1px;
+  border-radius: inherit;
+  background: radial-gradient(600px 200px at 50% -10%, rgba(34,211,238,0.18), transparent 65%);
+  opacity: 0;
+  transition: opacity .25s ease;
+  z-index: -1;
 }
-#splash-card-1{
-    background-image: url("/assets/1.png");
+.feature-card:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-med);
 }
-#splash-card-2{
-    background-image: url("/assets/2.png");
+.feature-card:hover::after{ opacity: 1; }
+
+.pastel-card-1{
+  background:
+    linear-gradient(180deg, rgba(108,99,255,0.10), rgba(108,99,255,0.02)),
+    var(--card-bg);
 }
-#splash-card-3{
-    background-image: url("/assets/3.png");
+.pastel-card-2{
+  background:
+    linear-gradient(180deg, rgba(34,211,238,0.12), rgba(34,211,238,0.03)),
+    var(--card-bg);
 }
-.cards{
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+.pastel-card-3{
+  background:
+    linear-gradient(180deg, rgba(255,101,132,0.12), rgba(255,101,132,0.03)),
+    var(--card-bg);
 }
-.cards:hover{
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+
+/* (Optional) If you want to keep your image-based splash IDs, they’ll still work: */
+#splash-card-1{ background-size: cover; background-position: center; }
+#splash-card-2{ background-size: cover; background-position: center; }
+#splash-card-3{ background-size: cover; background-position: center; }
+
+/* ============================================
+   Auth Cards (login/register/reset use .login-card)
+   ============================================ */
+.login-card{
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(17,24,39,0.06);
+  background:
+    radial-gradient(900px 400px at 0% -10%, rgba(108,99,255,0.10), transparent 60%),
+    radial-gradient(700px 400px at 100% -10%, rgba(255,101,132,0.10), transparent 60%),
+    var(--card-bg);
+  box-shadow: var(--shadow-med);
+  animation: cardFloat .8s ease-out both;
 }
+.login-card .form-control{
+  border-radius: .75rem;
+  border: 1px solid rgba(17,24,39,0.12);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.login-card .form-control:focus{
+  border-color: var(--primary);
+  box-shadow: 0 0 0 .2rem rgba(108,99,255,0.15);
+}
+
+/* ============================================
+   Sections / Titles
+   ============================================ */
+#custom-cards h1,
+#features-title,
 #about-us-title{
-    background: linear-gradient( #ff3e96 0%, #440295 100%);
-    background-clip: text;
-    color: transparent;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    font-weight: 500;
+  background: linear-gradient(90deg, var(--primary), var(--accent-2), var(--secondary));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color: transparent;
+  text-shadow: none;
 }
+
 #about-us-subtitle{
-    color: #026be1;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    font-weight: 300;
+  color: var(--accent);
+  font-weight: 400;
 }
-#custom-footer{
-    background-color: black;
-    color: rgb(72, 166, 249);
+
+/* ============================================
+   Footer (partials/footer.ejs uses .pastel-footer)
+   ============================================ */
+.pastel-footer{
+  background: linear-gradient(180deg, rgba(108,99,255,0.06), rgba(255,101,132,0.04));
+  border-top: 1px solid rgba(17,24,39,0.06);
+  color: var(--text);
 }
-#custom-footer p{
-    color: rgb(72, 166, 249);
+.pastel-footer h5{ color: var(--text); }
+.pastel-footer .pastel-link{
+  position: relative;
 }
+.pastel-footer .pastel-link::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:-3px; height:1.5px;
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+.pastel-footer .pastel-link:hover::after{ transform: scaleX(1); }
+
+/* ============================================
+   Utility Animations / Helpers
+   ============================================ */
+.fade-up{
+  animation: fadeUp .7s ease-out both;
+}
+@keyframes fadeUp{
+  from{ opacity:0; transform: translateY(12px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+.scale-in{
+  animation: scaleIn .6s ease-out both;
+}
+@keyframes scaleIn{
+  from{ opacity:0; transform: scale(.96); }
+  to{ opacity:1; transform: scale(1); }
+}
+
+/* Hover lift utility for any .card */
+.card.hover-lift{
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card.hover-lift:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-med);
+}
+
+/* ============================================
+   Legacy IDs (kept for compatibility, restyled)
+   ============================================ */
+.logo{ width: 70px; border-radius: 50%; }
+
+#custom-cards{
+  /* acts as section container; keep text normal color, titles are gradient via selectors above */
+  color: inherit;
+}
+
+#qr-code-section{
+  background: var(--card-bg);
+  color: var(--text);
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Buttons with .btn-primary fallback (Bootstrap override) */
+.btn-primary{
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border: 0;
+  box-shadow: 0 6px 16px rgba(108,99,255,0.28);
+}
+.btn-primary:hover{
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  box-shadow: 0 10px 22px rgba(108,99,255,0.35);
+}
+
+/* ============================================
+   Spacing Tweaks
+   ============================================ */
+.section{
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+.rounded-lg{ border-radius: var(--radius-lg); }
+.rounded-xl{ border-radius: var(--radius-xl); }
+
+/* ============================================
+   Optional: Simple “reveal” on first paint
+   (add .fade-up or .scale-in classes in your EJS)
+   ============================================ */
+
+/* Done. Enjoy ✨ */

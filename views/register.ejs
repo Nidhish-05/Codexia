@@ -1,0 +1,42 @@
+<%- include("partials/header") %>
+<%- include("partials/navbar") %>
+
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="col-md-8">
+    <div class="card login-card p-4">
+      <h2 class="text-center pastel-title mb-4">Join Codexia</h2>
+      <p class="text-center pastel-text mb-4">Create an account and start writing, sharing, and inspiring 💡</p>
+
+      <div class="row">
+        <!-- Registration Form -->
+        <div class="col-md-7">
+          <form action="/register" method="POST">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" name="username" placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" placeholder="Choose a strong password" required>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn pastel-btn">Register</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Social Signup -->
+        <div class="col-md-5 d-flex align-items-center">
+          <div class="w-100 text-center">
+            <a class="btn pastel-btn w-100 mb-3" href="/auth/google" role="button">
+              <img src="/assets/google.svg" alt="Google Logo" width="20" class="me-2"> Sign up with Google
+            </a>
+            <p class="pastel-text">Already have an account? <a href="/login" class="pastel-link">Login</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer") %>

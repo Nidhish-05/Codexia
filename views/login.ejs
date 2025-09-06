@@ -1,0 +1,43 @@
+<%- include("partials/header") %>
+<%- include("partials/navbar") %>
+
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="col-md-6">
+    <div class="card login-card p-4">
+      <h2 class="text-center pastel-title mb-4">Welcome Back</h2>
+      <p class="text-center pastel-text mb-4">Log in to continue your journey with Codexia ✨</p>
+
+      <form action="/login" method="POST">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" name="username" placeholder="Enter your email" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn pastel-btn">Login</button>
+        </div>
+      </form>
+
+      <div class="text-center mt-3">
+        <a href="/reset-password" class="pastel-link">Forgot Password?</a>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="text-center">
+        <a class="btn pastel-btn w-100" href="/auth/google" role="button">
+          <img src="/assets/google.svg" alt="Google Logo" width="20" class="me-2"> Sign in with Google
+        </a>
+      </div>
+
+      <p class="text-center pastel-text mt-4">
+        New here? <a href="/register" class="pastel-link">Create an account</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer") %>

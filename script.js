@@ -19,8 +19,36 @@ db.connect();
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/", (req, res)=>{
+app.get("/home", (req, res)=>{
     res.render("index.ejs");
+});
+
+app.get("/", (req, res)=>{
+    res.redirect("/home");
+})
+
+app.get("/login", (req, res)=>{
+    res.render("login.ejs");
+});
+
+app.get("/register", (req, res)=>{
+    res.render("register.ejs");
+});
+
+app.get("/about", (req, res)=>{
+    res.render("about.ejs");
+});
+
+app.get("/contact", (req, res)=>{
+    res.render("contact.ejs");
+});
+
+app.get("/faq", (req, res)=>{
+    res.render("faq.ejs");
+});
+
+app.get("/explore", (req, res)=>{
+    res.render("explore.ejs");
 });
 
 app.listen(port, ()=>{
